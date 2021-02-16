@@ -1,11 +1,29 @@
 package main
-
+// Rune é apelido para int32
 import (
 	"fmt"
+	"log"
+	"strconv"
 )
 
+// Constante #define MINHA_COSNTANTE 10
+const MINHA_CONSTANTE = 10;
 
 func main(){
+
+	/* Printf
+	 *	Formatação
+	 *		\n => pula linha
+	 *		\t => pula um Tab no texto
+	 *  Concatenação
+	 		 %v	 => Conteudo da variavel seja string, int ou float
+			 %b  => Valor em binario 
+			 %d  => Valor em decimal
+			 %#x => Valor em hexadecimal
+			 %0.2f => Valor em float com 2 casas decimais
+ 	 */
+	fmt.Println("##  CONSTANTE  ##");
+	fmt.Printf(" Tipo : %T \n  Valor: %v \n",MINHA_CONSTANTE, MINHA_CONSTANTE);
 	/* Criação de variavel com o Marmota 
 	*	Para criar uma variavel e obrigatorio fazer a inicialização dela com um valor
 	*  pois ó Go necessita disso para determinar o tipo da variavel
@@ -120,4 +138,38 @@ func main(){
 	fmt.Println("##  Map(Mapas)  ##");
 	fmt.Printf(" Tipo : %T \n  Valor: %v \n", usuario, usuario);
 	fmt.Printf(" Tipo : %T \n  Valor: %v \n", usuario["nome"], usuario["nome"]);
+
+	// # Conversions
+	b := 125.56
+	c := 390.9
+	fmt.Println("##  Conversoes  ##");
+	fmt.Printf(" Tipo : %T \n  Valor: %v \n", int(b), int(b));
+	fmt.Printf(" Tipo : %T \n  Valor: %v \n", int(c), int(c));
+	// 		Concatenando 
+	user := "Sammy"
+    linhas := 50
+
+	fmt.Println("Parabens, " + user + "! Você excreveu " + strconv.Itoa(linhas) + " linhas de codigo.")
+	// 		Calculando a partir de um String https://pkg.go.dev/strconv
+
+	linhas_ontem := "50"
+    linhas_hoje := "108"
+
+	// linhas_ontem - linhas_hoje => Erro de operação 
+	// Tenta converter "50" para => 50
+	ontem, err := strconv.Atoi(linhas_ontem)
+	// Verifica se ocorreu um erro na conversao apra inteiro
+    if err != nil {
+        log.Fatal(err)
+    }
+	// Tenta converter "108" para => 108
+	hoje, err := strconv.Atoi(linhas_hoje)
+	// Verifica se ocorreu um erro na conversao apra inteiro
+    if err != nil {
+        log.Fatal(err)
+    }
+    var linhasAhMaisHoje int = hoje - ontem
+
+    fmt.Println(linhasAhMaisHoje)
+
 }
