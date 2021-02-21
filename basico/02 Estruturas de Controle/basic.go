@@ -16,6 +16,12 @@ const (
 	CONSTANTE3 
 )
 
+
+func Foo(n int) int {
+    fmt.Println(n)
+    return n
+}
+
 func main(){
 
 	fmt.Println(" ## Constante IOTA ##")
@@ -48,6 +54,14 @@ func main(){
     case 3:
         fmt.Println("trés")
 	}
+
+	switch Foo(2) {
+    case Foo(1), Foo(2), Foo(3):
+        fmt.Println("First case")
+        fallthrough
+    case Foo(4):
+        fmt.Println("Second case")
+    }
 	
 	// For 
 	sum := 0
@@ -83,7 +97,14 @@ func main(){
     	sum += i
 	}
 	fmt.Println(sum) // 6 (2+4)
-
+	/* Defer e uma chamda aonde o comando seguinte
+	 * é executadodepois da ultima instrução de excecução acabar
+	 * e basicamente uma chamada para que depois da exceução o Go
+	 * execute essa tarefa antes do enceramento do programa
+	 *  defer <Chamada1>
+	 *  defer <Chamada2> 
+	 */
+	 defer fmt.Println("Defer chamada executada antes do encerramento do programa");
 	// Não exsite ternario mais tem um gambiarra com map kkkk
 	valorDoTernario := map[bool]int{true: 1, false: 0} [5 > 4]
 	fmt.Println(valorDoTernario)
@@ -93,5 +114,8 @@ func main(){
 
     time.Sleep(2 * time.Second)
 
-    fmt.Printf("Unix Time: %v\n", time.Now().Unix())
+	fmt.Printf("Unix Time: %v\n", time.Now().Unix())
+	
+
+
 }
